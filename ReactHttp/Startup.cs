@@ -2,16 +2,23 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Core.Logging;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using ReactHttp.Core.Data;
+using ReactHttp.Core.Data.Repository;
+using ReactHttp.Infrastructure.Database;
+using ReactHttp.Infrastructure.Database.Repository;
+using ReactHttp.Infrastructure.Logging;
 
 namespace ReactHttp
 {
@@ -27,6 +34,23 @@ namespace ReactHttp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // Repository
+            services.AddScoped<IPostRepository, PostRepository>();
+
+            // Unit of Work
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+            // Mapper
+            services.AddAutoMapper(typeof(Startup));
+
+            // Logging
+            services.AddScoped(typeof(INLogLogger<>), typeof(NLogLogger<>));
+
+            // Database
+            services.AddDbContext<ReactHttpDbContext>(
+                options => options.UseSqlServer(Configuration.GetConnectionString("Default"))
+            );
+
             // services.AddControllers();
             services.AddControllersWithViews();
 
