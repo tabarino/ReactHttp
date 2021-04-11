@@ -6,13 +6,26 @@ import Post from '../../components/Post/Post';
 import styles from './Blog.module.css';
 
 class Blog extends Component {
+  state = {
+    posts: []
+  }
+
+  componentDidMount() {
+    axios.get('/api/posts')
+      .then(response => {
+        this.setState({ posts: response.data });
+      });
+  }
+
   render() {
+    const posts = this.state.posts.map(post => {
+      return <Post key={post.id} title={post.title} />
+    });
+
     return (
       <div>
         <section className={styles.Posts}>
-          <Post />
-          <Post />
-          <Post />
+          {posts}
         </section>
         <section>
           <FullPost />
@@ -22,13 +35,6 @@ class Blog extends Component {
         </section>
       </div>
     );
-  }
-
-  componentDidMount() {
-    axios.get('/api/posts')
-      .then(response => {
-        console.log(response);
-      });
   }
 }
 

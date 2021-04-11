@@ -4,7 +4,7 @@ import styles from './Post.module.css';
 const Post = (props) => {
   return (
     <article className={styles.Post}>
-      <h1>Title</h1>
+      <h1>{props.title}</h1>
       <div>
         <div className={styles.Author}>Author</div>
       </div>
