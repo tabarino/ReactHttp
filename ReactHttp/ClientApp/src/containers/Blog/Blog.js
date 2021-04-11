@@ -13,13 +13,21 @@ class Blog extends Component {
   componentDidMount() {
     axios.get('/api/posts')
       .then(response => {
-        this.setState({ posts: response.data });
+        const posts = response.data;
+        const updatePosts = posts.map(post => {
+          return {
+            ...post,
+            author: 'Ivan'
+          }
+        });
+
+        this.setState({ posts: updatePosts });
       });
   }
 
   render() {
     const posts = this.state.posts.map(post => {
-      return <Post key={post.id} title={post.title} />
+      return <Post key={post.id} title={post.title} author={post.author} />
     });
 
     return (
