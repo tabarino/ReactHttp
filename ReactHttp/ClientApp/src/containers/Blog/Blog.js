@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import FullPost from '../../components/FullPost/FullPost';
 import NewPost from '../../components/NewPost/NewPost';
 import Post from '../../components/Post/Post';
@@ -21,6 +22,13 @@ class Blog extends Component {
         </section>
       </div>
     );
+  }
+
+  componentDidMount() {
+    axios.get('/api/posts')
+      .then(response => {
+        console.log(response);
+      });
   }
 }
 
