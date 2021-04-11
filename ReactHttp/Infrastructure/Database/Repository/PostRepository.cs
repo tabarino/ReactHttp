@@ -21,6 +21,11 @@ namespace ReactHttp.Infrastructure.Database.Repository
             return await _context.Posts.ToListAsync();
         }
 
+        public async Task<PostEntity> GetPost(int id)
+        {
+            return await _context.Posts.FindAsync(id);
+        }
+
         public void Add(PostEntity post)
         {
             _context.Posts.Add(post);

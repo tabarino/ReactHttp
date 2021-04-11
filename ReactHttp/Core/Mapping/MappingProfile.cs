@@ -9,7 +9,11 @@ namespace ReactHttp.Core.Data.Mapping
     {
         public MappingProfile()
         {
+            // Entity to DTO
             CreateMap<PostEntity, PostDTO>();
+
+            // DTO to Entity
+            CreateMap<PostDTO, PostEntity>();
         }
     }
 }
