@@ -27,6 +27,9 @@ export class FullPost extends Component {
     axios.get('/api/posts/' + this.props.id)
       .then(response => {
         this.setState({ loadedPost: response.data });
+      })
+      .catch(error => {
+        console.log(error);
       });
   }
 
@@ -34,6 +37,9 @@ export class FullPost extends Component {
     axios.delete('/api/posts/' + this.props.id)
       .then(response => {
         console.log(response);
+      })
+      .catch(error => {
+        console.log(error);
       });
   }
 

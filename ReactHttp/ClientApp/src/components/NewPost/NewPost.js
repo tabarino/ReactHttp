@@ -18,6 +18,9 @@ export class NewPost extends Component {
     axios.post('/api/posts', data)
       .then(response => {
         console.log(response);
+      })
+      .catch(error => {
+        console.log(error);
       });
   }
 
