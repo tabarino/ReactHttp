@@ -12,13 +12,22 @@ export class FullPost extends Component {
       return;
     }
 
-    if (!this.state.loadedPost
-    ||  this.state.loadedPost && this.state.loadedPost.id !== this.props.id) {
-      axios.get('/api/posts/' + this.props.id)
-        .then(response => {
-          this.setState({ loadedPost: response.data });
-        });
+    if (!this.state.loadedPost) {
+      this.loadPost();
+      return;
     }
+
+    if (this.state.loadedPost && this.state.loadedPost.id !== this.props.id) {
+      this.loadPost();
+      return;
+    }
+  }
+
+  loadPost = () => {
+    axios.get('/api/posts/' + this.props.id)
+      .then(response => {
+        this.setState({ loadedPost: response.data });
+      });
   }
 
   render() {
