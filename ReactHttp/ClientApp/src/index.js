@@ -6,7 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import axios from 'axios';
 
 // Interceptor for Request
-axios.interceptors.request.use(request => {
+var interceptorRequest = axios.interceptors.request.use(request => {
   console.log(request);
   // Add/Edit what is needed in the Request
   return request;
@@ -15,8 +15,11 @@ axios.interceptors.request.use(request => {
   return Promise.reject(error);
 });
 
+// You can remove a Interceptor using the Eject
+axios.interceptors.request.eject(interceptorRequest);
+
 // Interceptor for Response
-axios.interceptors.response.use(response => {
+var interceptorResponse = axios.interceptors.response.use(response => {
   console.log(response);
   // Add/Edit what is needed in the Response
   return response;
@@ -24,6 +27,9 @@ axios.interceptors.response.use(response => {
   console.error(error);
   return Promise.reject(error);
 });
+
+// You can remove a Interceptor using the Eject
+axios.interceptors.response.eject(interceptorResponse);
 
 ReactDOM.render(
   <React.StrictMode>
