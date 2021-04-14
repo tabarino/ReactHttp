@@ -5,6 +5,12 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import axios from 'axios';
 
+// Set Base URL
+// axios.defaults.baseURL = 'https://localhost:5001';
+axios.defaults.headers.common['Authorization'] = 'AUTH_TOKEN';
+// axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+axios.defaults.headers.post['Content-Type'] = 'application/json';
+
 // Interceptor for Request
 var interceptorRequest = axios.interceptors.request.use(request => {
   console.log(request);
