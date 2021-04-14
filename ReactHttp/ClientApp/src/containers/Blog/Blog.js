@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+// import axios from 'axios';
+import AxiosInstance from '../../AxiosInstance';
 import FullPost from '../../components/FullPost/FullPost';
 import NewPost from '../../components/NewPost/NewPost';
 import Post from '../../components/Post/Post';
@@ -13,7 +14,7 @@ class Blog extends Component {
   }
 
   componentDidMount() {
-    axios.get('/api/posts')
+    AxiosInstance.get('/api/posts')
       .then(response => {
         const posts = response.data;
         const updatePosts = posts.map(post => {
