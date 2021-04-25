@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './Post.module.css';
+import { withRouter } from 'react-router-dom';
 
 const Post = (props) => {
   return (
@@ -12,4 +13,4 @@ const Post = (props) => {
   );
 }
 
-export default Post;
+export default withRouter(Post);
