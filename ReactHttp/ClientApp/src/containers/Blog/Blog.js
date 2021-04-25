@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Posts from '../Posts/Posts';
 import NewPost from '../NewPost/NewPost';
 import styles from './Blog.module.css';
-import { Route, Link } from 'react-router-dom';
+import { Route, NavLink } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 
 class Blog extends Component {
@@ -14,13 +14,13 @@ class Blog extends Component {
         <header>
           <nav>
             <ul>
-              <li><Link to="/">Home</Link></li>
-              <li><Link to={{
-                pathname: 'new-post'
+              <li><NavLink exact activeStyle={{fontWeight: 'bold', color: '#fa923f'}} to="/">Home</NavLink></li>
+              <li><NavLink exact activeStyle={{fontWeight: 'bold', color: '#fa923f'}} to={{
+                pathname: '/new-post'
                 // pathname: this.props.match.url + '/new-post',
                 // hash: '#submit',
                 // search: '?quick-submit=true'
-              }}>New Post</Link></li>
+              }}>New Post</NavLink></li>
             </ul>
           </nav>
         </header>
