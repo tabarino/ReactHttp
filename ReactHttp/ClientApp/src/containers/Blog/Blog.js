@@ -3,9 +3,12 @@ import Posts from '../Posts/Posts';
 import NewPost from '../NewPost/NewPost';
 import styles from './Blog.module.css';
 import { Route, Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 class Blog extends Component {
   render() {
+    console.log(this.props);
+
     return (
       <div className={styles.Blog}>
         <header>
@@ -13,7 +16,8 @@ class Blog extends Component {
             <ul>
               <li><Link to="/">Home</Link></li>
               <li><Link to={{
-                pathname: 'new-post',
+                pathname: 'new-post'
+                // pathname: this.props.match.url + '/new-post',
                 // hash: '#submit',
                 // search: '?quick-submit=true'
               }}>New Post</Link></li>
@@ -29,4 +33,4 @@ class Blog extends Component {
   }
 }
 
-export default Blog;
+export default withRouter(Blog);
