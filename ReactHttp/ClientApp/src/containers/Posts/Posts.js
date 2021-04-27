@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Post from '../../components/Post/Post';
 import AxiosInstance from '../../AxiosInstance';
 import styles from './Posts.module.css';
+import { Link } from 'react-router-dom';
 
 export class Posts extends Component {
   state = {
@@ -37,12 +38,13 @@ export class Posts extends Component {
     if (!this.state.error) {
       posts = this.state.posts.map(post => {
         return (
-          <Post
-            key={post.id}
-            title={post.title}
-            author={post.author}
-            click={this.postSelectHandler.bind(this, post.id)}>
-          </Post>
+          <Link to={'/' + post.id} key={post.id}>
+            <Post
+              title={post.title}
+              author={post.author}
+              click={this.postSelectHandler.bind(this, post.id)}>
+            </Post>
+          </Link>
         );
       });
     }
