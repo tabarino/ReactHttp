@@ -7,6 +7,10 @@ import { Route, NavLink, Switch, Redirect } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 
 class Blog extends Component {
+  state = {
+    auth: false
+  }
+
   render() {
     return (
       <div className={styles.Blog}>
@@ -27,7 +31,7 @@ class Blog extends Component {
         <Route path="/" exact render={() => <h1>Home2</h1>} /> */}
         {/* <Route path="/" exact component={Posts} /> */}
         <Switch>
-          <Route path="/new-post" component={NewPost} />
+          {this.state.auth ? <Route path="/new-post" component={NewPost} /> : null}
           <Route path="/posts" component={Posts} />
           <Redirect from="/" to="/posts" />
           {/* <Route path="/:id" exact component={FullPost} /> */}
