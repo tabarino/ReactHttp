@@ -20,7 +20,8 @@ export class NewPost extends Component {
     axios.post('/api/posts', data)
       .then(response => {
         console.log(response);
-        this.setState({ submitted: true });
+        this.props.history.replace('/posts');
+        // this.setState({ submitted: true });
       })
       .catch(error => {
         console.log(error);

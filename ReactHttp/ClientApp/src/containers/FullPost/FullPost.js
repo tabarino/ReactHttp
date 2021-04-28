@@ -46,6 +46,8 @@ export class FullPost extends Component {
     axios.delete('/api/posts/' + this.props.match.params.id)
       .then(response => {
         console.log(response);
+        this.props.history.replace('/posts');
+        window.location.reload();
       })
       .catch(error => {
         console.log(error);
