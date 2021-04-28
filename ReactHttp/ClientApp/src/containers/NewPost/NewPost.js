@@ -7,7 +7,7 @@ export class NewPost extends Component {
   state = {
     title: '',
     body: '',
-    author: 'Max',
+    author: 'Ivan',
     submitted: false
   }
 
@@ -44,8 +44,8 @@ export class NewPost extends Component {
         <textarea rows="4" value={this.state.body} onChange={(event) => this.setState({ body: event.target.value })} />
         <label>Author</label>
         <select value={this.state.author} onChange={(event) => this.setState({ author: event.target.value })}>
-          <option value="Max">Max</option>
-          <option value="Manu">Manu</option>
+          <option value="Ivan">Ivan</option>
+          <option value="Rosana">Rosana</option>
         </select>
         <button onClick={this.postDataHandler}>Add Post</button>
       </div>
