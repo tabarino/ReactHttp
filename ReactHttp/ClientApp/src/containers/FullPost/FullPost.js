@@ -8,6 +8,14 @@ export class FullPost extends Component {
   }
 
   componentDidMount() {
+    this.loadData();
+  }
+
+  componentDidUpdate() {
+    this.loadData();
+  }
+
+  loadData() {
     if (!this.props.match.params.id) {
       return;
     }
