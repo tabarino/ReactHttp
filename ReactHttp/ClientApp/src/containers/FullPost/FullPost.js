@@ -25,7 +25,8 @@ export class FullPost extends Component {
       return;
     }
 
-    if (this.state.loadedPost && this.state.loadedPost.id !== this.props.match.params.id) {
+    // The + converts this.props.match.params.id to number to be able to compare with the loadedPost.id
+    if (this.state.loadedPost && this.state.loadedPost.id !== +this.props.match.params.id) {
       this.loadPostHandler();
       return;
     }
